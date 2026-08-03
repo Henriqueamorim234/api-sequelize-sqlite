@@ -12,7 +12,32 @@ class Controller {
     }
   }
 
-  async atualiza(req, res) {
+  async pegarPorId(req, res) {
+    const { id } = req.params;
+
+    try {
+      const umRegistro = await this.entidadeService.pegarUmRegistroPorID(
+        Number(id),
+      );
+      return res.status(200).json(umRegistro);
+    } catch (error) {
+      res.status(404).json("registro não encontrado");
+    }
+  }
+
+  async criarNovo(req, res) {
+    const novoRegistro = req.body;
+
+    try {
+      const registroCriado =
+        await this.entidadeService.criarRegistro(novoRegistro);
+      return res.status(200).json(registroCriado);
+    } catch (error) {
+      // erro
+    }
+  }
+
+  async atualizar(req, res) {
     const { id } = req.params;
 
     const dadosAtualizados = req.body;
@@ -30,6 +55,19 @@ class Controller {
       return res.status(200).json({ mensage: "registro foi atualizado" });
     } catch (error) {
       //erro
+    }
+  }
+
+  async deletar(req, res) {
+    const { id } = req.params;
+
+    try {
+      this.entidadeService.deletarRegistro(id);
+      return res
+        .status(200)
+        .json({ mensage: `o registro de id = ${id} foi deletado` });
+    } catch (error) {
+      // erro
     }
   }
 }
