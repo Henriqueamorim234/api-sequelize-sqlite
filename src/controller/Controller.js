@@ -21,7 +21,7 @@ class Controller {
       );
       return res.status(200).json(umRegistro);
     } catch (error) {
-      res.status(500).json({ erro: error.mensage });
+      res.status(500).json({ erro: error.message });
     }
   }
 
@@ -33,7 +33,7 @@ class Controller {
         await this.entidadeService.criarRegistro(novoRegistro);
       return res.status(200).json(registroCriado);
     } catch (error) {
-      res.status(500).json({ erro: error.mensage });
+      res.status(500).json({ erro: error.message });
     }
   }
 
@@ -49,12 +49,12 @@ class Controller {
       );
 
       if (!foiAtualizado) {
-        return res.status(400).json({ mensage: "registro não foi atualizado" });
+        return res.status(400).json({ message: "registro não foi atualizado" });
       }
 
-      return res.status(200).json({ mensage: "registro foi atualizado" });
+      return res.status(200).json({ message: "registro foi atualizado" });
     } catch (error) {
-      res.status(500).json({ erro: error.mensage });
+      res.status(500).json({ erro: error.message });
     }
   }
 
@@ -65,9 +65,9 @@ class Controller {
       this.entidadeService.deletarRegistro(id);
       return res
         .status(200)
-        .json({ mensage: `o registro de id = ${id} foi deletado` });
+        .json({ message: `o registro de id = ${id} foi deletado` });
     } catch (error) {
-      res.status(500).json({ erro: error.mensage });
+      res.status(500).json({ erro: error.message });
     }
   }
 }

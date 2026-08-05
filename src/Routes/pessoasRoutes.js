@@ -32,6 +32,10 @@ router.delete("/pessoas/:id", (req, res) => {
 });
 
 router.get("/pessoas/:estudanteid/matriculas", (req, res) => {
+  pessoaController.pegaMatriculasAtivas(req, res);
+});
+
+router.get("/pessoas/:estudanteid/matriculas/todos", (req, res) => {
   pessoaController.pegaMatriculas(req, res);
 });
 
