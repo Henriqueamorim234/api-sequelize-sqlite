@@ -47,4 +47,12 @@ router.post("/pessoas/:estudante_id/matriculas", (req, res) => {
   matriculaController.criarNovo(req, res);
 });
 
+router.put("/pessoas/:estudante_id/matriculas/:id", (req, res) => {
+  matriculaController.atualizar(req, res);
+});
+
+router.delete("/pessoas/:estudante_id/matriculas/:id", (req, res) => {
+  matriculaController.deletar(req, res);
+});
+
 module.exports = router;

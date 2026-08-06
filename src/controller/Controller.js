@@ -52,14 +52,16 @@ class Controller {
   }
 
   async atualizar(req, res) {
-    const { id } = req.params;
+    const { ...params } = req.params;
+
+    const where = converteIds(params);
 
     const dadosAtualizados = req.body;
 
     try {
       const foiAtualizado = await this.entidadeService.atualizaRegistro(
         dadosAtualizados,
-        Number(id),
+        where,
       );
 
       if (!foiAtualizado) {
@@ -73,13 +75,15 @@ class Controller {
   }
 
   async deletar(req, res) {
-    const { id } = req.params;
+    const { ...params } = req.params;
+
+    const where = converteIds(params);
 
     try {
-      this.entidadeService.deletarRegistro(id);
+      this.entidadeService.deletarRegistro(where);
       return res
         .status(200)
-        .json({ message: `o registro de id = ${id} foi deletado` });
+        .json({ message: `o registro de id = ${params.id} foi deletado` });
     } catch (error) {
       res.status(500).json({ erro: error.message });
     }
