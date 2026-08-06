@@ -16,6 +16,10 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
+  async pegarUmRegistro(where) {
+    return dataSource[this.model].findOne({ where: { ...where } });
+  }
+
   async criarRegistro(dadosDoRegistro) {
     return dataSource[this.model].create(dadosDoRegistro);
   }

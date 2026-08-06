@@ -31,15 +31,19 @@ router.delete("/pessoas/:id", (req, res) => {
   pessoaController.deletar(req, res);
 });
 
-router.get("/pessoas/:estudanteid/matriculas", (req, res) => {
+router.get("/pessoas/:estudante_id/matriculas", (req, res) => {
   pessoaController.pegaMatriculasAtivas(req, res);
 });
 
-router.get("/pessoas/:estudanteid/matriculas/todos", (req, res) => {
+router.get("/pessoas/:estudante_id/matriculas/todos", (req, res) => {
   pessoaController.pegaMatriculas(req, res);
 });
 
-router.post("/pessoas/:estudanteid/matriculas", (req, res) => {
+router.get("/pessoas/:estudante_id/matriculas/:id", (req, res) => {
+  matriculaController.pegarUm(req, res);
+});
+
+router.post("/pessoas/:estudante_id/matriculas", (req, res) => {
   matriculaController.criarNovo(req, res);
 });
 

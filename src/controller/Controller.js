@@ -1,3 +1,5 @@
+const converteIds = require("../utils/conversorDeStringHelper");
+
 class Controller {
   constructor(entidadeService) {
     this.entidadeService = entidadeService;
@@ -19,6 +21,18 @@ class Controller {
       const umRegistro = await this.entidadeService.pegarUmRegistroPorID(
         Number(id),
       );
+      return res.status(200).json(umRegistro);
+    } catch (error) {
+      res.status(500).json({ erro: error.message });
+    }
+  }
+
+  async pegarUm(req, res) {
+    const { ...params } = req.params;
+    const where = converteIds(params);
+
+    try {
+      const umRegistro = await this.entidadeService.pegarUmRegistro(where);
       return res.status(200).json(umRegistro);
     } catch (error) {
       res.status(500).json({ erro: error.message });
