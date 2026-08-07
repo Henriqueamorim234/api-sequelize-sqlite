@@ -6,7 +6,7 @@ const cursoController = new CursoController();
 const router = Router();
 
 router.get("/cursos", (req, res) => {
-  cursoController.pegaTodos(req, res);
+  cursoController.pegaCursos(req, res);
 });
 
 router.get("/cursos/:id", (req, res) => {
